@@ -1,6 +1,6 @@
 package ru.profw.demo
 
-import GitHubViewModel
+import ru.profw.demo.viewmodel.GitHubViewModel
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        adapter = RepoAdapter(emptyList())
+        adapter = RepoAdapter()
         binding.reposRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.reposRecyclerView.adapter = adapter
 
@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             viewModel.searchRepositories(query)
+        }
+
+        viewModel.repositories.observe(this) { repositories ->
+            adapter.repositories = repositories
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

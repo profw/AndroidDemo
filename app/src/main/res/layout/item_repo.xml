@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="8dp">
-
-    <TextView
-        android:id="@+id/repoName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Название репозитория"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/repoOwner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Логин автора" />
 
     <ImageView
         android:id="@+id/repoAvatar"
@@ -24,9 +12,32 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp" />
 
-    <TextView
-        android:id="@+id/repoUrl"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="URL репозитория" />
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/repoName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Название репозитория"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/repoOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Логин автора" />
+
+        <TextView
+            android:id="@+id/repoUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="URL репозитория" />
+    </LinearLayout>
 </LinearLayout>

@@ -9,8 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.profw.demo.model.Repository
 
-class RepoAdapter(private val repositories: List<Repository>) :
+class RepoAdapter() :
     RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+
+    var repositories: List<Repository> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.repoName)

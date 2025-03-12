@@ -1,7 +1,12 @@
+package ru.profw.demo.viewmodel
+
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.launch
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -17,19 +22,22 @@ class GitHubViewModel : ViewModel() {
     val cacheInterceptor = Interceptor { chain ->
         val originalResponse = chain.proceed(chain.request())
         originalResponse.newBuilder()
-            .header("Cache-Control", "public, max-age=360") // Кэшировать на 1 час
+            .header("Cache-Control", "public, max-age=360")
             .build()
     }
 
-    val client = OkHttpClient.Builder()
+    val client: OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(cacheInterceptor)
         .build()
 
+    val gson: Gson = GsonBuilder()
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        .create()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.github.com/")
         .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
     private val apiService = retrofit.create(GitHubApiService::class.java)
@@ -52,5 +60,4 @@ class GitHubViewModel : ViewModel() {
     companion object {
         private const val TAG = "GitHubViewModel"
     }
-
 }
