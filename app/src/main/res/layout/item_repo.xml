@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:background="?selectableItemBackground"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="5dp">
+
 
     <ImageView
         android:id="@+id/repoAvatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/repoName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_marginStart="4pt"
+        android:text="Название репозитория"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/repoAvatar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/repoName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Название репозитория"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/repoOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4pt"
+        android:text="Логин автора"
+        app:layout_constraintStart_toEndOf="@id/repoAvatar"
+        app:layout_constraintTop_toBottomOf="@id/repoName" />
 
-        <TextView
-            android:id="@+id/repoOwner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Логин автора" />
+    <TextView
+        android:id="@+id/repoUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4pt"
+        android:autoLink="web"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="URL репозитория"
+        app:layout_constraintStart_toEndOf="@id/repoAvatar"
+        app:layout_constraintTop_toBottomOf="@id/repoOwner"/>
 
-        <TextView
-            android:id="@+id/repoUrl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="URL репозитория" />
-    </LinearLayout>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/likedImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2pt"
+        android:src="@drawable/ic_like"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
