@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RepoFinder</string>
+    <string name="url">URL репозитория</string>
+    <string name="owner_login">Логин автора</string>
+    <string name="repository_name">Название репозитория</string>
+    <string name="like_icon_description">Добавить в избранное</string>
 </resources>

@@ -16,8 +16,7 @@ import ru.profw.demo.model.Repository
 import ru.profw.demo.model.github.GitHubApiService
 
 class GitHubViewModel : ViewModel() {
-    private val _repositories = MutableLiveData<List<Repository>>()
-    val repositories get() = _repositories
+    val repositories = MutableLiveData<List<Repository>>()
 
     val cacheInterceptor = Interceptor { chain ->
         val originalResponse = chain.proceed(chain.request())
@@ -47,14 +46,21 @@ class GitHubViewModel : ViewModel() {
             try {
                 val response = apiService.searchRepos(query)
                 if (response.isSuccessful) {
-                    _repositories.value = response.body()?.items
+                    repositories.value = response.body()?.items
                 } else {
                     Log.i(TAG, "Query $query is not successful")
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.w(TAG, e)
             }
         }
+    }
+
+    fun toggleLike(repo: Repository) {
+        val updatedList = repositories.value?.map {
+            if (it == repo) it.copy(isLiked = !it.isLiked) else it
+        }
+        repositories.value = updatedList?: emptyList()
     }
 
     companion object {

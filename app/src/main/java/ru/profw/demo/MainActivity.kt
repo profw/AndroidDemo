@@ -22,7 +22,14 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        adapter = RepoAdapter()
+        adapter = RepoAdapter(
+            onLikeClick = { repo ->
+                viewModel.toggleLike(repo) // Обновляем состояние в ViewModel
+            },
+            onItemClick = {
+
+            }
+        )
         binding.reposRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.reposRecyclerView.adapter = adapter
 
