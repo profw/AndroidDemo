@@ -1,18 +1,13 @@
 package ru.profw.demo
 
-import android.content.Intent
-import android.graphics.PorterDuff
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.profw.demo.model.Repository
-import androidx.core.net.toUri
 
 class RepoAdapter(
     private val onItemClick: (Repository) -> Unit,

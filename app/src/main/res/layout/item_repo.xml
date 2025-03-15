@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
@@ -15,6 +14,7 @@
         android:id="@+id/repoAvatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:contentDescription="@string/repository_avatar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4pt"
-        android:text="@string/repository_name"
+        android:contentDescription="@string/repository_name"
         android:clickable="true"
         android:focusable="true"
         android:textSize="18sp"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4pt"
         android:layout_marginEnd="4pt"
-        android:text="@string/owner_login"
+        android:contentDescription="@string/owner_login"
         app:layout_constraintStart_toEndOf="@+id/repoAvatar"
         app:layout_constraintTop_toBottomOf="@id/repoName" />
 
