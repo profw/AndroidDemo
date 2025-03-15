@@ -13,6 +13,9 @@ lifecycleViewmodelKtx = "2.8.7"
 retrofit = "2.9.0"
 retrofitConverterGson = "2.9.0"
 picasso = "2.8"
+room-runtime = "2.6.1"
+room-ktx = "2.6.1"
+room-compiler = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +31,9 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitConverterGson" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-runtime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-ktx" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-compiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
