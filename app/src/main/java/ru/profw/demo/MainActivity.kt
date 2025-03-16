@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.repositories.observe(this) { repositories ->
-            viewModel.loadLikedRepositories(repositories)
+            //viewModel.loadLikedRepositories(repositories)
             adapter.repositories = repositories
         }
 

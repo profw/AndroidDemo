@@ -11,7 +11,7 @@ import ru.profw.demo.model.Repository
 
 class RepoAdapter(
     private val onItemClick: (Repository) -> Unit,
-    private val onLikeClick: (Repository) -> Unit // Колбэк для обработки лайка
+    private val onLikeClick: (Repository) -> Unit,
 ) :
     RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
 
@@ -51,7 +51,7 @@ class RepoAdapter(
             )
 
             likedSign.setOnClickListener {
-                onLikeClick(repo) // Вызываем колбэк
+                onLikeClick(repo)
                 notifyItemChanged(position) // Обновляем UI
             }
 

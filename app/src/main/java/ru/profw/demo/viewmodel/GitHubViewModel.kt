@@ -50,7 +50,12 @@ class GitHubViewModel(application: Application) : AndroidViewModel(application) 
         try {
             val response = apiService.searchRepos(query)
             if (response.isSuccessful) {
-                repositories.value = response.body()?.items
+                val repos = response.body()?.items
+                if (!repos.isNullOrEmpty()) {
+                    loadLikedRepositories(repos)
+                } else {
+                    repositories.value = emptyList()
+                }
             } else {
                 Log.i(TAG, "Query $query is not successful")
             }
