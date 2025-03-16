@@ -1,7 +1,10 @@
 package ru.profw.demo
 
+import android.content.Context
 import ru.profw.demo.viewmodel.GitHubViewModel
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,21 +30,28 @@ class MainActivity : AppCompatActivity() {
                 viewModel.toggleLike(repo) // Обновляем состояние в ViewModel
             },
             onItemClick = {
-
+                // TODO: Добавить логику для формы с деталями
             }
         )
         binding.reposRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.reposRecyclerView.adapter = adapter
 
         binding.searchButton.setOnClickListener {
-            val query = binding.searchEditText.text.toString()
-            if (query.isEmpty()) {
-                return@setOnClickListener
+            search()
+        }
+
+        binding.searchEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                search()
+                hideKeyboard()
+                true
+            } else {
+                false
             }
-            viewModel.searchRepositories(query)
         }
 
         viewModel.repositories.observe(this) { repositories ->
+            viewModel.loadLikedRepositories(repositories)
             adapter.repositories = repositories
         }
 
@@ -50,5 +60,18 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun search() {
+        val query = binding.searchEditText.text.toString()
+        if (query.isEmpty()) {
+            return
+        }
+        viewModel.searchRepositories(query)
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.searchEditText.windowToken, 0)
     }
 }

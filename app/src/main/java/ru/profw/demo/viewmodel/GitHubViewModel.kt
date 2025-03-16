@@ -1,8 +1,9 @@
 package ru.profw.demo.viewmodel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -12,11 +13,15 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.profw.demo.dao.AppDatabase
+import ru.profw.demo.dao.LikedRepository
 import ru.profw.demo.model.Repository
 import ru.profw.demo.model.github.GitHubApiService
 
-class GitHubViewModel : ViewModel() {
+class GitHubViewModel(application: Application) : AndroidViewModel(application) {
     val repositories = MutableLiveData<List<Repository>>()
+    private val database = AppDatabase.getDatabase(application)
+    private val likedRepositoryDao = database.likedRepositoryDao()
 
     val cacheInterceptor = Interceptor { chain ->
         val originalResponse = chain.proceed(chain.request())
@@ -41,26 +46,60 @@ class GitHubViewModel : ViewModel() {
 
     private val apiService = retrofit.create(GitHubApiService::class.java)
 
-    fun searchRepositories(query: String) {
-        viewModelScope.launch {
-            try {
-                val response = apiService.searchRepos(query)
-                if (response.isSuccessful) {
-                    repositories.value = response.body()?.items
-                } else {
-                    Log.i(TAG, "Query $query is not successful")
-                }
-            } catch (e: Exception) {
-                Log.w(TAG, e)
+    fun searchRepositories(query: String) = viewModelScope.launch {
+        try {
+            val response = apiService.searchRepos(query)
+            if (response.isSuccessful) {
+                repositories.value = response.body()?.items
+            } else {
+                Log.i(TAG, "Query $query is not successful")
             }
+        } catch (e: Exception) {
+            Log.w(TAG, e)
         }
     }
 
-    fun toggleLike(repo: Repository) {
+
+    fun toggleLike(repo: Repository) = viewModelScope.launch {
+        if (repo.isLiked) {
+            // Удаляем из базы данных, если лайк убран
+            val likedRepo = LikedRepository(
+                id = repo.id,
+                name = repo.name,
+                ownerLogin = repo.owner.login,
+                avatarUrl = repo.owner.avatarUrl,
+                htmlUrl = repo.htmlUrl,
+                description = repo.description,
+            )
+            likedRepositoryDao.delete(likedRepo)
+        } else {
+            // Добавляем в базу данных, если лайк поставлен
+            val likedRepo = LikedRepository(
+                id = repo.id,
+                name = repo.name,
+                ownerLogin = repo.owner.login,
+                avatarUrl = repo.owner.avatarUrl,
+                htmlUrl = repo.htmlUrl,
+                description = repo.description,
+            )
+            likedRepositoryDao.insert(likedRepo)
+        }
         val updatedList = repositories.value?.map {
             if (it == repo) it.copy(isLiked = !it.isLiked) else it
         }
-        repositories.value = updatedList?: emptyList()
+        repositories.value = updatedList ?: emptyList()
+    }
+
+    fun loadLikedRepositories(reposFromApi: List<Repository>) = viewModelScope.launch {
+        // Получаем все лайкнутые репозитории из базы данных
+        val likedRepos = likedRepositoryDao.getAll()
+
+        // Обновляем состояние isLiked для каждого репозитория
+        val updatedRepos = reposFromApi.map { repo ->
+            val isLiked = likedRepos.any { it.id == repo.id }
+            repo.copy(isLiked = isLiked)
+        }
+        repositories.value = updatedRepos
     }
 
     companion object {

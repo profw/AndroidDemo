@@ -11,6 +11,4 @@ data class LikedRepository(
     val avatarUrl: String,
     val htmlUrl: String,
     val description: String?,
-    val stargazersCount: Int,
-    val forksCount: Int
 )
