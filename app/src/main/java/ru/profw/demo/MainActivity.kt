@@ -1,7 +1,5 @@
 package ru.profw.demo
 
-import android.content.Context
-import ru.profw.demo.viewmodel.GitHubViewModel
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -12,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.profw.demo.databinding.ActivityMainBinding
+import ru.profw.demo.viewmodel.GitHubViewModel
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: GitHubViewModel by viewModels()

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -15,11 +14,13 @@
 
         <EditText
             android:id="@+id/searchEditText"
+            android:inputType="text"
+            android:autofillHints=""
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
-            android:hint="@string/enter_search_query" />
+            android:hint="@string/enter_search_query"/>
 
         <Button
             android:id="@+id/searchButton"
