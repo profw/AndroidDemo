@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:name="ru.profw.demo.provider.LikedRepositoryProvider"
+            android:name="ru.profw.demo.provider.LikedRepositoryContentProvider"
             android:authorities="ru.profw.demo.githubsearch.provider"
             android:exported="true" />
     </application>

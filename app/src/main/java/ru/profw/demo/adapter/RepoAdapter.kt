@@ -1,4 +1,4 @@
-package ru.profw.demo
+package ru.profw.demo.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import ru.profw.demo.R
 import ru.profw.demo.model.Repository
 
 class RepoAdapter(
     private val onItemClick: (Repository) -> Unit,
     private val onLikeClick: (Repository) -> Unit,
-) :
-    RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
 
     var repositories: List<Repository> = emptyList()
         set(value) {
@@ -21,7 +21,7 @@ class RepoAdapter(
             notifyDataSetChanged()
         }
 
-    class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.repoName)
         val owner: TextView = itemView.findViewById(R.id.repoOwner)
         val avatar: ImageView = itemView.findViewById(R.id.repoAvatar)

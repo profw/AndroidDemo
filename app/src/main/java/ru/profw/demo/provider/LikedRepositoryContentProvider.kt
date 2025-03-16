@@ -9,7 +9,7 @@ import androidx.room.Room
 import ru.profw.demo.dao.AppDatabase
 import androidx.core.net.toUri
 
-class LikedRepositoryProvider : ContentProvider() {
+class LikedRepositoryContentProvider : ContentProvider() {
 
     private lateinit var db: AppDatabase
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.profw.demo.adapter.RepoAdapter
 import ru.profw.demo.databinding.ActivityMainBinding
 import ru.profw.demo.viewmodel.GitHubViewModel
 
