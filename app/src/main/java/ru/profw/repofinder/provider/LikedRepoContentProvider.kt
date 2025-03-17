@@ -1,4 +1,4 @@
-package ru.profw.repofinder
+package ru.profw.repofinder.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues

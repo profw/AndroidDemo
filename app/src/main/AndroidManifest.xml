@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--permission
+        android:name="ru.profw.repofinder.permission.ACCESS_REPOSITORIES"
+        android:protectionLevel="normal" /-->
 
     <application
         android:allowBackup="true"
@@ -25,9 +28,10 @@
             </intent-filter>
         </activity>
         <provider
-            android:name="ru.profw.repofinder.LikedRepoContentProvider"
+            android:name="ru.profw.repofinder.provider.LikedRepoContentProvider"
             android:authorities="ru.profw.repofinder.provider"
-            android:exported="true"
-            android:permission="ru.profw.repofinder.PERMISSION"/>
+            android:exported="true"   />
+            <!--android:permission="ru.profw.repofinder.permission.ACCESS_REPOSITORIES"-->
+
     </application>
 </manifest>
