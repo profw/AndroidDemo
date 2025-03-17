@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.profw.repofinder.R
 import ru.profw.repofinder.adapter.RepoAdapter
 import ru.profw.repofinder.databinding.ActivityMainBinding
 import ru.profw.repofinder.viewmodel.RepoViewModel
