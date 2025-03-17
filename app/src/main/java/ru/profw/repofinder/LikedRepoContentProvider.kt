@@ -1,21 +1,22 @@
-package ru.profw.demo.provider
+package ru.profw.repofinder
 
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import androidx.room.Room
-import ru.profw.demo.dao.AppDatabase
+import android.util.Log
 import androidx.core.net.toUri
+import androidx.room.Room
+import ru.profw.repofinder.dao.AppDatabase
 
-class LikedRepositoryContentProvider : ContentProvider() {
+class LikedRepoContentProvider : ContentProvider() {
 
     private lateinit var db: AppDatabase
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
     companion object {
-        const val AUTHORITY = "ru.profw.demo.githubsearch.provider"
+        const val AUTHORITY = "ru.profw.repofinder.provider"
         val CONTENT_URI: Uri = "content://$AUTHORITY/liked_repositories".toUri()
         const val LIKED_REPOSITORIES = 1
         const val LIKED_REPOSITORY_ID = 2
@@ -40,6 +41,7 @@ class LikedRepositoryContentProvider : ContentProvider() {
         selectionArgs: Array<String>?,
         sortOrder: String?
     ): Cursor? {
+        Log.d("GitHubSearchProvider", "Query received: $uri")
         return when (uriMatcher.match(uri)) {
             LIKED_REPOSITORIES -> {
                 db.likedRepositoryDao().getAllCursor()
@@ -56,8 +58,8 @@ class LikedRepositoryContentProvider : ContentProvider() {
 
     override fun getType(uri: Uri): String? {
         return when (uriMatcher.match(uri)) {
-            LIKED_REPOSITORIES -> "vnd.android.cursor.dir/vnd.ru.profw.demo.githubsearch.liked_repositories"
-            LIKED_REPOSITORY_ID -> "vnd.android.cursor.item/vnd.ru.profw.demo.githubsearch.liked_repositories"
+            LIKED_REPOSITORIES -> "vnd.android.cursor.dir/vnd.ru.profw.repofinder.liked_repositories"
+            LIKED_REPOSITORY_ID -> "vnd.android.cursor.item/vnd.ru.profw.repofinder.liked_repositories"
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
     }

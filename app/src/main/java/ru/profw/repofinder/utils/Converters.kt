@@ -1,7 +1,7 @@
-package ru.profw.demo.utils
+package ru.profw.repofinder.utils
 
 import android.content.ContentValues
-import ru.profw.demo.dao.LikedRepository
+import ru.profw.repofinder.dao.LikedRepository
 
 fun LikedRepository.toContentValues() =
     ContentValues().apply {

@@ -1,4 +1,4 @@
-package ru.profw.demo.dao
+package ru.profw.repofinder.dao
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

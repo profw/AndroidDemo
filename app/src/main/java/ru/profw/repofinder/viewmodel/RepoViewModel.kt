@@ -1,4 +1,4 @@
-package ru.profw.demo.viewmodel
+package ru.profw.repofinder.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -13,12 +13,12 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.profw.demo.dao.AppDatabase
-import ru.profw.demo.dao.LikedRepository
-import ru.profw.demo.model.Repository
-import ru.profw.demo.model.github.GitHubApiService
+import ru.profw.repofinder.dao.AppDatabase
+import ru.profw.repofinder.dao.LikedRepository
+import ru.profw.repofinder.model.Repository
+import ru.profw.repofinder.model.github.GitHubApiService
 
-class GitHubViewModel(application: Application) : AndroidViewModel(application) {
+class RepoViewModel(application: Application) : AndroidViewModel(application) {
     val repositories = MutableLiveData<List<Repository>>()
     private val database = AppDatabase.getDatabase(application)
     private val likedRepositoryDao = database.likedRepositoryDao()

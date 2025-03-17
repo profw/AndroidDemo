@@ -1,4 +1,4 @@
-package ru.profw.demo
+package ru.profw.repofinder
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
@@ -9,12 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.profw.demo.adapter.RepoAdapter
-import ru.profw.demo.databinding.ActivityMainBinding
-import ru.profw.demo.viewmodel.GitHubViewModel
+import ru.profw.repofinder.R
+import ru.profw.repofinder.adapter.RepoAdapter
+import ru.profw.repofinder.databinding.ActivityMainBinding
+import ru.profw.repofinder.viewmodel.RepoViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: GitHubViewModel by viewModels()
+    private val viewModel: RepoViewModel by viewModels()
     private lateinit var adapter: RepoAdapter
     private lateinit var binding: ActivityMainBinding
 
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
         adapter = RepoAdapter(
             onLikeClick = { repo ->
                 viewModel.toggleLike(repo) // Обновляем состояние в ViewModel

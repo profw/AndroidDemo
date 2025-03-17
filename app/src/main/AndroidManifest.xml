@@ -16,7 +16,7 @@
         android:theme="@style/Theme.RepoFinder"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="ru.profw.repofinder.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,9 @@
             </intent-filter>
         </activity>
         <provider
-            android:name="ru.profw.demo.provider.LikedRepositoryContentProvider"
-            android:authorities="ru.profw.demo.githubsearch.provider"
-            android:exported="true" />
+            android:name="ru.profw.repofinder.LikedRepoContentProvider"
+            android:authorities="ru.profw.repofinder.provider"
+            android:exported="true"
+            android:permission="ru.profw.repofinder.PERMISSION"/>
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package ru.profw.demo
+package ru.profw.repofinder
 
 import org.junit.Test
 

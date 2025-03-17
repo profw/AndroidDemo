@@ -1,4 +1,4 @@
-package ru.profw.demo.dao
+package ru.profw.repofinder.dao
 
 import android.content.ContentValues
 import android.database.Cursor
@@ -9,7 +9,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.runBlocking
-import ru.profw.demo.utils.toLikedRepository
+import ru.profw.repofinder.utils.toLikedRepository
 
 @Dao
 interface LikedRepositoryDao {

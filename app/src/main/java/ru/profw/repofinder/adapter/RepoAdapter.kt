@@ -1,4 +1,4 @@
-package ru.profw.demo.adapter
+package ru.profw.repofinder.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import ru.profw.demo.R
-import ru.profw.demo.model.Repository
+import ru.profw.repofinder.R
+import ru.profw.repofinder.model.Repository
 
 class RepoAdapter(
     private val onItemClick: (Repository) -> Unit,

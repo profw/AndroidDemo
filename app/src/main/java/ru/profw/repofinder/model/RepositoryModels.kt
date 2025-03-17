@@ -1,4 +1,4 @@
-package ru.profw.demo.model
+package ru.profw.repofinder.model
 
 data class Repository(
     val id: Long,

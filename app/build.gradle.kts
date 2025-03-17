@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.profw.demo"
+    namespace = "ru.profw.repofinder"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "ru.profw.demo"
+        applicationId = "ru.profw.repofinder"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

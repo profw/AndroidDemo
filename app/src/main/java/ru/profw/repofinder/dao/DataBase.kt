@@ -1,4 +1,4 @@
-package ru.profw.demo.dao
+package ru.profw.repofinder.dao
 
 import androidx.room.Database
 import androidx.room.Room
