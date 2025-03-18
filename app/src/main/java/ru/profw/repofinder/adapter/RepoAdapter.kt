@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import coil3.load
 import ru.profw.repofinder.R
 import ru.profw.repofinder.model.Repository
 
@@ -42,9 +42,7 @@ class RepoAdapter(
             owner.text = repo.owner.login
             url.text = repo.htmlUrl
 
-            Picasso.get()
-                .load(repo.owner.avatarUrl)
-                .into(avatar)
+            avatar.load(repo.owner.avatarUrl)
 
             likedSign.setImageResource(
                 if (repo.isLiked) R.drawable.ic_like_filled else R.drawable.ic_like

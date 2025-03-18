@@ -64,7 +64,6 @@ class RepoViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
     fun toggleLike(repo: Repository) = viewModelScope.launch {
         if (repo.isLiked) {
             // Удаляем из базы данных, если лайк убран

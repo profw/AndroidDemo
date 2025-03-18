@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.request.crossfade
 import ru.profw.repofinder.adapter.RepoAdapter
 import ru.profw.repofinder.databinding.ActivityMainBinding
 import ru.profw.repofinder.viewmodel.RepoViewModel
@@ -39,6 +42,11 @@ class MainActivity : AppCompatActivity() {
             search()
         }
 
+        SingletonImageLoader.setSafe { context ->
+            ImageLoader.Builder(context)
+                .crossfade(true)
+                .build()
+        }
         binding.searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 search()
